@@ -1,13 +1,18 @@
 ARG VARIANT=0-3.7-bullseye
 FROM mcr.microsoft.com/vscode/devcontainers/python:${VARIANT}
 
-# [Optional] Uncomment this section to install additional OS packages.
-# RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-#     && apt-get -y install --no-install-recommends <your-package-list-here>
+ENV \
+    DEBIAN_FRONTEND=noninteractive \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1
 
-# [Optional] Uncomment this line to install global node packages.
-# RUN su vscode -c "source /usr/local/share/nvm/nvm.sh && npm install -g <your-package-here>" 2>&1
+SHELL ["/bin/bash", "-ceux", "-o", "pipefail"]
 
 RUN \
     pipx install poetry==1.2.0; \
-    poetry completions bash >> ~/.bash_completion
+    poetry completions bash >> ~/.bash_completion;
+
+COPY .devcontainer/postcreate.sh /
+
+RUN \
+    chmod +x /postcreate.sh;

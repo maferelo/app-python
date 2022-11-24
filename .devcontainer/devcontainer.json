@@ -1,20 +1,10 @@
 {
 	"name": "Python 3",
-	"build": {
-		"dockerfile": "Dockerfile",
-		"context": "..",
-		"args": { 
-			"VARIANT": "0-3.7-bullseye",
-			// Options
-			"NODE_VERSION": "lts/*"
-		}
-	},
-
-	// Configure tool-specific properties.
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "app",
+	"workspaceFolder": "/workspace",
 	"customizations": {
-		// Configure properties specific to VS Code.
 		"vscode": {
-			// Set *default* container specific settings.json values on container create.
 			"settings": { 
 				"python.defaultInterpreterPath": "/usr/local/bin/python",
 				"python.linting.enabled": true,
@@ -33,8 +23,6 @@
 					"titleBar.activeForeground": "#ffffff"
 				}
 			},
-			
-			// Add the IDs of extensions you want installed when the container is created.
 			"extensions": [
 				"ms-python.python",
 				"ms-python.vscode-pylance"
