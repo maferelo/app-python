@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "app-python"
+version = "0.1.0"
+description = "Cookiecutter template for services with python and FastAPI"
+authors = ["maferelo <maferelo13@gmail.com>"]
+readme = "README.md"
+packages = [{include = "app_python"}]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+fastapi = "^0.87.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
